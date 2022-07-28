@@ -33,24 +33,23 @@ function Cards() {
   };
   const checkMatch = (newSelection) => {
     console.log("Check Match Function me enter ho gya hai");
-    // oldSelection!==newSelection is used Because User may click the same-card(index) again
-    if (
-      oldSelection !== newSelection &&
-      items[oldSelection].id === items[newSelection].id
-    ) {
-      setOldSelection(-1);
-      setTimeout(() => {
-        items[oldSelection].status = "cardhide";
-        items[newSelection].status = "cardhide";
-        setItems([...items]); // ... spread operator array ko update kry ga
-      }, 1000);
-    } else {
-      setOldSelection(-1);
-      setTimeout(() => {
-        items[oldSelection].status = "";
-        items[newSelection].status = "";
-        setItems([...items]); // ... spread operator array ko update kry ga
-      }, 1000);
+    // oldSelection!==newSelection is used Because User may click the same-card(same-index) again
+    if (oldSelection !== newSelection) {
+      if (items[oldSelection].id === items[newSelection].id) {
+        setOldSelection(-1);
+        setTimeout(() => {
+          items[oldSelection].status = "cardhide";
+          items[newSelection].status = "cardhide";
+          setItems([...items]); // ... spread operator array ko update kry ga
+        }, 1000);
+      } else {
+        setOldSelection(-1);
+        setTimeout(() => {
+          items[oldSelection].status = "";
+          items[newSelection].status = "";
+          setItems([...items]); // ... spread operator array ko update kry ga
+        }, 1000);
+      }
     }
   };
 
